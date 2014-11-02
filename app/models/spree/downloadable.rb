@@ -9,7 +9,6 @@ class Spree::Downloadable < Spree::ProductDownload
 
   scope :visible, where(enabled: true, secret_links_only: false)
   
-  attr_accessible :attachment, :title, :password, :enabled, :secret_links_only
 
   def filename
     attachment_file_name
