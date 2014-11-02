@@ -1,0 +1,15 @@
+da:
+  download: Download
+  this_file_is_password_protected: Denne fil kræver et password.
+  incorrect_password_given: Forkert udgangskode indtastet.
+  incorrect_secret_link: Ikke gyldig hemmelig link brugt.
+  cancel: Fortryd
+  downloads: Downloads
+  downloadables: Downloadables
+  secret_links_only: Hemmeligt link
+  secret: Hemmelig
+  enabled: Vis
+  filename: Filnavn
+  title: Titel
+  zip-file-description: Zip file beskrivelse
+  download_not_available: Download ikke tilgængelig

@@ -1,0 +1,77 @@
+<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => "Downloadables"} %>
+
+<div class="yui-g">
+  <div class="yui-u first">
+	<%= form_for(@downloadable, :url => { :controller => 'downloadables', :action => 'create' }, :html => { :multipart => true }) do |f| %>
+
+    <% @downloadable.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+
+  	<fieldset>
+      <legend><%=t 'downloads' %></legend>
+
+      <%= f.field_container :name do %>
+				<%= f.label :name, t("filename") %> <span class="required">*</span> <br/>
+				<%= f.file_field :attachment %>
+		  <% end %>
+
+			<%= f.field_container :title do %>
+				<%= f.label t("title") %><br/>
+				<%= f.text_field :title %>
+		  <% end %>
+      <!--
+      <%= f.field_container :password do %>
+        <%= f.label t("password") %><br/>
+        <%= f.text_field :password %>
+      <% end %>
+
+      <%= f.field_container :enabled do %>
+        <%= f.label t("enabled") %><br/>
+        <%= f.check_box :enabled %>
+      <% end %>
+
+      <%= f.field_container :secret_links_only do %>
+        <%= f.label t("secret_links_only") %><br/>
+        <%= f.check_box :secret_links_only %>
+      <% end %>
+      -->
+		  <%= hidden_field_tag :product_id, @product.id %>
+
+      <p class="form-buttons">
+        <%= button t("update") %>
+        or <%= link_to t("cancel"), "#", :id => "cancel_link" %>
+      </p>
+	  </fieldset>
+
+	<% end %>
+  </div>
+</div>
+
+
+<table class="index">
+	<tr>
+		<th><%= t("filename") %></th>
+		<th><%= t("title") %></th>
+		<th width="40px"><%= t("enabled") %></th>
+    <th width="40px"><%= t("password") %></th>
+    <th width="40px"><%= t("secret") %></th>
+		<th width="120px"><%= t("action") %></th>
+	</tr>
+  <% @product.downloadables.each do |downloadable| %>
+    <tr>
+      <td><%= link_to(downloadable.filename, downloadable.attachment.url(:product)) %></td>
+      <td><%= downloadable.title %></td>
+      <td><%= check_box_tag 'downloadable', 'enabled', downloadable.enabled, :disabled => true %></td>
+      <td><%= check_box_tag 'downloadable', 'password', downloadable.password.present?, :disabled => true %></td>
+      <td><%= check_box_tag 'downloadable', 'secret_links_only', downloadable.secret_links_only, :disabled => true %></td>
+      <td class="actions" style="padding:0px;">
+        <%= link_to_with_icon('edit', t("edit"), edit_admin_product_downloadable_url(@product, downloadable)) %>
+        &nbsp;
+        <%= link_to_delete downloadable, {:url => admin_product_downloadable_url(@product, downloadable) }%>
+      </td>
+    </tr>
+  <% end %>
+</table>

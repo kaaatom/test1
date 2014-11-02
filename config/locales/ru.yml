@@ -1,0 +1,8 @@
+--- 
+ru:
+  downloads: "Прикрепленные файлы"
+  zip-file-description: "Все файлы"
+  download_not_available: К сожалению файлов для скачивания пока нет.
+  enabled: 'Включено'
+  secret_links_only: 'Только по паролю'
+  secret: Ссылка
